@@ -17,7 +17,7 @@ type Fmt struct {
 }
 
 type Int struct {
-	int64
+	Val int64
 	Fmt Fmt
 }
 
@@ -30,7 +30,7 @@ func (n Int) String() string {
 			b = 1024
 		}
 
-		v := float64(n.int64)
+		v := float64(n.Val)
 		for ; v >= b; e += 1 {
 			v /= b
 		}
@@ -38,7 +38,7 @@ func (n Int) String() string {
 		s += strconv.FormatFloat(v, 'f', n.Fmt.Prec, 64)
 
 	} else {
-		s += strconv.FormatInt(n.int64, 10)
+		s += strconv.FormatInt(n.Val, 10)
 		if n.Fmt.Prec > 0 {
 			s += "." + strings.Repeat("0", n.Fmt.Prec)
 		}
